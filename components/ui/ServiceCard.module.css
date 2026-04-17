@@ -1,0 +1,237 @@
+/* ============================================
+   SERVICE CARD — Bento style
+   ============================================ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-grey-subtle);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-orange);
+  box-shadow: 0 16px 48px oklch(0.3 0 0 / 0.08);
+}
+
+/* ── Wireframe area ──────────────────────────── */
+
+.wireframe {
+  width: 100%;
+  height: 110px;
+  border-radius: 10px;
+  background: var(--color-bg);
+  overflow: hidden;
+  padding: var(--space-2);
+  opacity: 0.6;
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .wireframe {
+  opacity: 0.9;
+  transform: scale(1.04);
+}
+
+.wireframeSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Text ────────────────────────────────────── */
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+  line-height: 1.3;
+}
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-grey-mid);
+}
+
+/* ── Shared wireframe animations ─────────────── */
+
+.miniLabel {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--color-grey-mid);
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+}
+
+.costLabel {
+  font-size: 18px;
+  font-weight: 800;
+  fill: var(--color-grey-light);
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+}
+
+.dashFlow {
+  animation: dashFlowAnim 3s linear infinite;
+}
+
+@keyframes dashFlowAnim {
+  from { stroke-dashoffset: 16; }
+  to { stroke-dashoffset: 0; }
+}
+
+.dashFlowReverse {
+  animation: dashFlowRevAnim 3s linear infinite;
+}
+
+@keyframes dashFlowRevAnim {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 16; }
+}
+
+.dashFlowFast {
+  animation: dashFlowFastAnim 1.5s linear infinite;
+}
+
+@keyframes dashFlowFastAnim {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+.pointPulse {
+  animation: pointPulseAnim 2s ease-in-out infinite;
+}
+
+@keyframes pointPulseAnim {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.selectedPoint {
+  animation: selectedPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes selectedPulse {
+  0%, 100% { stroke-width: 2; }
+  50% { stroke-width: 3; }
+}
+
+.rippleSmall {
+  animation: rippleSmallAnim 2s ease-out infinite;
+}
+
+@keyframes rippleSmallAnim {
+  0% { r: 8; opacity: 0.5; }
+  100% { r: 20; opacity: 0; }
+}
+
+.boxReturn {
+  animation: boxReturnAnim 2.5s ease-in-out infinite;
+}
+
+@keyframes boxReturnAnim {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+
+.trackBar {
+  animation: trackBarAnim 3s ease-in-out infinite;
+}
+
+@keyframes trackBarAnim {
+  0% { width: 0; }
+  40% { width: 80px; }
+  75% { width: 80px; }
+  100% { width: 0; }
+}
+
+.costLine {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: costLineAnim 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes costLineAnim {
+  0% { stroke-dashoffset: 40; }
+  30% { stroke-dashoffset: 0; }
+  75% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 40; }
+}
+
+.clockHandFast {
+  transform-origin: 40px 50px;
+  animation: clockFastAnim 4s linear infinite;
+}
+
+@keyframes clockFastAnim {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.speedLine {
+  animation: speedAnim 1s ease-in-out infinite;
+}
+
+.speedLine2 {
+  animation: speedAnim 1s ease-in-out infinite 0.2s;
+}
+
+@keyframes speedAnim {
+  0%, 100% { opacity: 0.2; transform: translateX(0); }
+  50% { opacity: 0.5; transform: translateX(-4px); }
+}
+
+.checkCircle {
+  animation: checkAppear 3s ease-in-out infinite;
+}
+
+.checkMark {
+  stroke-dasharray: 16;
+  stroke-dashoffset: 16;
+  animation: checkDraw 3s ease-in-out infinite;
+}
+
+@keyframes checkAppear {
+  0%, 60% { opacity: 0; }
+  70% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes checkDraw {
+  0%, 60% { stroke-dashoffset: 16; }
+  80% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── Reduced motion ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .dashFlow, .dashFlowReverse, .dashFlowFast,
+  .pointPulse, .selectedPoint, .rippleSmall,
+  .boxReturn, .trackBar, .costLine,
+  .clockHandFast, .speedLine, .speedLine2,
+  .checkCircle, .checkMark {
+    animation: none;
+  }
+
+  .checkCircle { opacity: 1; }
+  .checkMark { stroke-dashoffset: 0; }
+  .costLine { stroke-dashoffset: 0; }
+
+  .card:hover .wireframe {
+    transform: none;
+  }
+}

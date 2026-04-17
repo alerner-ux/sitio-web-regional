@@ -1,0 +1,113 @@
+.frame {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 14px;
+  border: 1.5px solid var(--color-grey-subtle);
+  background: var(--color-white);
+  overflow: hidden;
+  padding: var(--space-4);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Labels ──────────────────────────────────── */
+
+.label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--color-grey-mid);
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+}
+
+.labelSmall {
+  font-size: 8px;
+  font-weight: 600;
+  fill: var(--color-grey-mid);
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+}
+
+/* ── Warehouse boxes pulse ───────────────────── */
+
+.box1 { animation: boxPulse 3s ease-in-out infinite 0s; }
+.box2 { animation: boxPulse 3s ease-in-out infinite 0.4s; }
+.box3 { animation: boxPulse 3s ease-in-out infinite 0.8s; }
+.box4 { animation: boxPulse 3s ease-in-out infinite 1.2s; }
+
+@keyframes boxPulse {
+  0%, 100% { opacity: 0.12; }
+  50% { opacity: 0.35; }
+}
+
+/* ── Routes draw in ──────────────────────────── */
+
+.route {
+  stroke-dashoffset: 0;
+  animation: dashFlow 4s linear infinite;
+}
+
+.routeLastMile {
+  stroke-dashoffset: 0;
+  animation: dashFlow 3s linear infinite;
+}
+
+@keyframes dashFlow {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Pickup point ripple ─────────────────────── */
+
+.ripple {
+  animation: rippleOut 2.5s ease-out infinite;
+}
+
+@keyframes rippleOut {
+  0% { r: 12; opacity: 0.4; }
+  100% { r: 24; opacity: 0; }
+}
+
+/* ── Efficiency bar fill ─────────────────────── */
+
+.effBar {
+  animation: fillBar 4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes fillBar {
+  0% { width: 0; }
+  30% { width: 158px; }
+  80% { width: 158px; }
+  100% { width: 0; }
+}
+
+/* ── Destinations subtle pulse ───────────────── */
+
+.destination {
+  animation: destFade 3s ease-in-out infinite;
+}
+
+.destination:nth-of-type(2) { animation-delay: 0.5s; }
+.destination:nth-of-type(3) { animation-delay: 1s; }
+
+@keyframes destFade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* ── Reduced motion ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .box1, .box2, .box3, .box4,
+  .route, .routeLastMile,
+  .ripple, .effBar, .destination {
+    animation: none;
+  }
+
+  .box1, .box2, .box3, .box4 { opacity: 0.25; }
+  .effBar { width: 158px; }
+  .destination { opacity: 0.4; }
+}

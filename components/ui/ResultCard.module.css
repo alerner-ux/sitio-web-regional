@@ -1,0 +1,174 @@
+/* ============================================
+   RESULT CARD
+   ============================================ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--color-dark-surface);
+  border: 1px solid var(--color-dark-border);
+  border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-orange);
+}
+
+.card:hover .wireframeSvg {
+  opacity: 0.9;
+}
+
+/* ── Wireframe area ─────────────────────────── */
+
+.wireframe {
+  width: 100%;
+  height: 60px;
+  margin-bottom: var(--space-2);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .wireframe {
+  opacity: 0.85;
+}
+
+.wireframeSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Gauge animation ────────────────────────── */
+
+.gaugeArc {
+  stroke-dasharray: 126;
+  stroke-dashoffset: 126;
+  animation: fillGauge 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes fillGauge {
+  0% { stroke-dashoffset: 126; }
+  40% { stroke-dashoffset: 4; }
+  70% { stroke-dashoffset: 4; }
+  100% { stroke-dashoffset: 126; }
+}
+
+.gaugeDot {
+  animation: pulseDot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; }
+  40% { opacity: 1; }
+  70% { opacity: 1; }
+}
+
+/* ── Clock animation ────────────────────────── */
+
+.clockMinute {
+  transform-origin: 60px 30px;
+  animation: rotateMinute 4s linear infinite;
+}
+
+.clockHour {
+  transform-origin: 60px 30px;
+  animation: rotateHour 12s linear infinite;
+}
+
+@keyframes rotateMinute {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateHour {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Bolt animation ─────────────────────────── */
+
+.boltPulse {
+  animation: pulseBolt 2s ease-in-out infinite;
+}
+
+@keyframes pulseBolt {
+  0%, 100% { opacity: 0.5; filter: drop-shadow(0 0 0 transparent); }
+  50% { opacity: 1; filter: drop-shadow(0 0 6px oklch(0.75 0.18 55 / 0.5)); }
+}
+
+.boltRing {
+  animation: expandRing 2s ease-out infinite;
+}
+
+@keyframes expandRing {
+  0% { opacity: 0.3; transform: scale(0.8); transform-origin: 60px 30px; }
+  50% { opacity: 0.1; transform: scale(1.1); transform-origin: 60px 30px; }
+  100% { opacity: 0.3; transform: scale(0.8); transform-origin: 60px 30px; }
+}
+
+/* ── Truck / delivery path ──────────────────── */
+
+.truckDot {
+  opacity: 0.9;
+}
+
+/* ── Shield checkmark ───────────────────────── */
+
+.shieldCheck {
+  stroke-dasharray: 42;
+  stroke-dashoffset: 42;
+  animation: drawCheck 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards infinite;
+}
+
+@keyframes drawCheck {
+  0% { stroke-dashoffset: 42; }
+  30% { stroke-dashoffset: 0; }
+  70% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 42; }
+}
+
+/* ── Value & label ──────────────────────────── */
+
+.value {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--color-orange);
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-dark-muted);
+  line-height: 1.4;
+}
+
+/* ── Reduced motion ─────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .gaugeArc,
+  .gaugeDot,
+  .clockMinute,
+  .clockHour,
+  .boltPulse,
+  .boltRing,
+  .shieldCheck {
+    animation: none;
+  }
+
+  .gaugeArc {
+    stroke-dashoffset: 4;
+  }
+
+  .shieldCheck {
+    stroke-dashoffset: 0;
+  }
+}

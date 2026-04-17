@@ -1,0 +1,85 @@
+/* ============================================
+   NAVBAR
+   ============================================ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-height);
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-grey-subtle);
+  backdrop-filter: blur(12px);
+}
+
+/* ── Inner layout ───────────────────────────── */
+
+.inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* ── Logo ────────────────────────────────────── */
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.04em;
+  color: var(--color-orange);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* ── Nav links ───────────────────────────────── */
+
+.nav {
+  display: flex;
+  gap: var(--space-6);
+  flex: 1;
+}
+
+.link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-grey-mid);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.link.active {
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.link:hover {
+  color: var(--color-black);
+}
+
+/* ── Right side ──────────────────────────────── */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.trackLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-blue);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.trackLink:hover {
+  opacity: 0.8;
+}
+
+.cta {
+  padding: 8px 18px;
+  font-size: 0.85rem;
+}
